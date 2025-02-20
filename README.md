@@ -43,7 +43,9 @@ def gpt_call(prompt, key):
     return response
 
 print(gpt_call(prompt, key_1))
-*  Run and you should see a prompt back as a print from chat gpt!
+```
+
+*  Run (with play button upper right) and you should see a prompt back as a print from chat gpt!
 
 ## Setup: Installing and using PostgreSQL
 *  You have to install PostgreSQL infrastructure on system first. [This link](https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database#setting-up-postgresql-on-macos) has best setup instructions, just [install via Mac here](https://www.postgresql.org/download/macosx/).
