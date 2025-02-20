@@ -20,25 +20,29 @@ Steps to install virtual enviroment
 *  paste in ```pip install openai```
 *  Go back to the test.py file 
 *  Paste over everything with this code (change to your open ai key):
-```import openai```
-```import time```
-```key_1 = '[YOUR OPEN AI KEY]'```
-```prompt = 'What are three nicknames comma separated for a really great guy named Dan?'```
-```def gpt_call(prompt, key):```
-```  prompt = prompt```
-```  openai.api_key = key```
-```  completion = openai.chat.completions.create(```
-```    model='gpt-4o', ```
-```    messages=[```
-```      {```
-```        'role': 'user',```
-```        'content': f'{prompt}',```
-```        },],```
-```    )```
-```  response = completion.choices[0].message.content```
-```  time.sleep(1)```
-```  return response```
-```  print(gpt_call(prompt, key)```
+```python
+import openai
+import time
+
+key_1 = '[YOUR OPEN AI KEY]'
+prompt = 'What are three nicknames comma separated for a really great guy named Dan?'
+
+def gpt_call(prompt, key):
+    openai.api_key = key
+    completion = openai.chat.completions.create(
+        model='gpt-4o',
+        messages=[
+            {
+                'role': 'user',
+                'content': f'{prompt}',
+            },
+        ],
+    )
+    response = completion.choices[0].message.content
+    time.sleep(1)
+    return response
+
+print(gpt_call(prompt, key_1))
 *  Run and you should see a prompt back as a print from chat gpt!
 
 ## Setup: Installing and using PostgreSQL
