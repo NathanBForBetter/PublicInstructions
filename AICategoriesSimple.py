@@ -2,7 +2,7 @@ import pandas as pd
 import openai
 import time
 
-key_1 = '[YOUR OPEN AI KEY]'
+key_1 = '[key]'
 file_path = '/Users/nathanbeddome/Downloads'
 input_csv_file_name = 'restaurant-feedback - reviews.csv'
 output_csv_file_name = 'restaurant-feedback-ai-categories.csv'
@@ -47,7 +47,8 @@ for index, row in input_df.iterrows():
     of this restaurant feedback {restaurant_feedback} combined with 
     their rating of {restaurant_rating} for the restaurant. Just pass the comma separated words.'''
   feedback_emotion_response = gpt_call(feedback_emotion_prompt, key_1)
-  feedback_emotion_responses = feedback_emotion_response.split(feedback_emotion_response, ',')
+  feedback_emotion_responses = feedback_emotion_response.split(',')
+
   for feedback_emotion in feedback_emotion_responses:
     output_df = pd.DataFrame([[restaurant_feedback, restaurant_name, restaurant_rating, ai_category_type, feedback_emotion]], columns=output_df_headers)
     output_df.to_csv(f'{file_path}/{output_csv_file_name}', mode='a', header=False, index=False)
@@ -67,6 +68,9 @@ for index, row in input_df.iterrows():
     Choose one category for this restaurant {restaurant_name} including one of these categories ({prev_restuarant_categories_string})
     only if its relevant. Just pass the one category.'''
   restaurant_category_response = gpt_call(restaurant_category_prompt, key_1)
+  prev_restuarant_categories.append(restaurant_category_response)
   output_df = pd.DataFrame([[restaurant_feedback, restaurant_name, restaurant_rating, ai_category_type, restaurant_category_response]], columns=output_df_headers)
   output_df.to_csv(f'{file_path}/{output_csv_file_name}', mode='a', header=False, index=False)
+  print(f'{restaurant_feedback} passed to csv successfully!')
+
 print('yay its done!')
