@@ -1,0 +1,14 @@
+# Secrets
+.env
+
+# Generated AI categorization CSVs
+output/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Editors / OS
+.vscode/
+.DS_Store
